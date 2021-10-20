@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
@@ -55,3 +56,29 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     # Login btn
     submit = SubmitField('Login')
+
+
+class UpdateAccountForm(FlaskForm):
+    # Make the username field
+    username = StringField('Username',
+                           # ▶︎   Create also validators, and the length of username
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    # Make the email field
+    email = StringField('Email',
+                        # ▶︎   Insert data and what kind of data
+                        validators=[DataRequired(), Email()])
+    # Submit btn
+    submit = SubmitField('Update')
+
+    # Give a feedback to the user if on register will feel the form with an already username and email are taken.
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first()
+            if user:
+                raise ValidationError('That username is taken. Please choose a different one! ')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError('That email is taken. Please choose a different one! ')
