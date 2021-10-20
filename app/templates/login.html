@@ -1,0 +1,93 @@
+{% extends 'client_template/base.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form action="" method="post">
+            {# Form Instance #}
+            {{ form.hidden_tag() }}
+            <fieldset class="mb-3">
+                <legend class="border-bottom mb-3">Log In</legend>
+
+                {# Username form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                {# Email form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.email.label(class="form-control-label") }}
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                {# Password form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.password.label(class="form-control-label") }}
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+
+            </fieldset>
+
+            <div class="mb-3">
+                {# Form submit btn #}
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+            <small class="text-muted ms-2">
+                <a href="#">Forget Password?</a>
+            </small>
+        </form>
+    </div>
+
+    <div class="bordert-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a href="{{ url_for('register') }}" class="ms-2">Sign Up Now!</a>
+        </small>
+    </div>
+
+{% endblock content %}

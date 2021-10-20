@@ -1,0 +1,10 @@
+{% extends 'client_template/base.html' %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h3>Hi, <small>{{ current_user.username }}! Hope you will have a great day.</small></h3>
+    {% else %}
+        <h1>Welcome to the home page!</h1>
+    {% endif %}
+
+{% endblock content %}
