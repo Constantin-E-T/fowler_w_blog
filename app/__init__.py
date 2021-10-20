@@ -11,7 +11,7 @@ app = Flask(__name__)
 # >>> secrets.token_hex(ex:16)
 app.config['SECRET_KEY'] = os.environ.get("MY_SECRET_KEY")
 # Create database config
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///site.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
 # SQLAlchemy error muted
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Create db variable
