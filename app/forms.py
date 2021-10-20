@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
@@ -67,6 +68,7 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email',
                         # ▶︎   Insert data and what kind of data
                         validators=[DataRequired(), Email()])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'jpeg', 'png', 'gif'])])
     # Submit btn
     submit = SubmitField('Update')
 
