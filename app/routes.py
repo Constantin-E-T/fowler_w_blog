@@ -120,7 +120,7 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         # Add post to database
-        post = Post(title=form.title.data, content=form.title.data, author=current_user)
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
