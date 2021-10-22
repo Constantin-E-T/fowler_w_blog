@@ -1,0 +1,58 @@
+{% extends 'client_template/base.html' %}
+
+{% block content %}
+
+<div class="content-section">
+    <form action="" method="post">
+        {# Form Instance #}
+        {{ form.hidden_tag() }}
+        <fieldset class="mb-3">
+            <legend class="border-bottom mb-3">{{ legend }}</legend>
+            {# Username form #}
+            <div class="mb-3">
+                {# Form label #}
+                {{ form.title.label(class="form-control-label") }}
+
+                {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {# Form Content #}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            {# Email form #}
+            <div class="mb-3">
+                {# Form label #}
+                {{ form.content.label(class="form-control-label") }}
+                {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {# Form Content #}
+                    {{ form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+
+        <div class="mb-3">
+            {# Form submit btn #}
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
