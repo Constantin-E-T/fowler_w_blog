@@ -1,0 +1,77 @@
+{% extends 'client_template/base.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ image_file }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {# Form Instance #}
+            {{ form.hidden_tag() }}
+            <fieldset class="mb-3">
+                <legend class="border-bottom mb-3">Account Info</legend>
+
+                {# Username form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                {# Email form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.email.label(class="form-control-label") }}
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}<br>
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="mb-3">
+                {# Form submit btn #}
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
