@@ -1,0 +1,54 @@
+{% extends 'client_template/base.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form action="" method="post">
+            {# Form Instance #}
+            {{ form.hidden_tag() }}
+            <fieldset class="mb-3">
+                <legend class="border-bottom mb-3">Reset Password</legend>
+                {# Email form #}
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.password.label(class="form-control-label") }}
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {# Form label #}
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {# Form check if the user insert the right data, if not trow a error.
+                     Use a bootstrap class 'is-invalid' #}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Form Content #}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+
+            <div class="mb-3">
+                {# Form submit btn #}
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
