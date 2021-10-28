@@ -19,7 +19,7 @@ if ENV == 'prod':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/user_data'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://iruxkonkkwkplh' \
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://iruxkonkkwkplh' \
                                             ':c58d045aae2e119e021b220a8b791725fa7285a4942c13d8f24233b3c02fab86@ec2-52' \
                                             '-6-211-59.compute-1.amazonaws.com:5432/d6lvnffdvams5u'
 
